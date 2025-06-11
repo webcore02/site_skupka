@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-
     const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero .btn');
     heroElements.forEach((el, index) => {
         setTimeout(() => {
             el.classList.add('animate');
         }, index * 80);
     });
-    
 
     setTimeout(handleScrollAnimations, 150);
 });
@@ -24,7 +22,7 @@ function handleScrollAnimations() {
         '.section-title, .feature-card, .step, .cta h2, .cta p, ' +
         '.cta-phone, .cta-image, .phone-mockup, .brands-image, ' +
         '.cities-grid, .brands-label, .hero h1, .hero p, .hero .btn, ' +
-        '.steps-line, .about p'
+        '.steps-line, .about p, .cities-container p, .cta-messenger'
     );
 
     elements.forEach(element => {
@@ -40,12 +38,18 @@ function handleScrollAnimations() {
             if (element.classList.contains('steps-line')) {
                 element.classList.add('animate-line');
             }
+            
+            if (element.classList.contains('cities-container')) {
+                const p = element.querySelector('p');
+                if (p) p.classList.add('animate');
+            }
         }
     });
 }
 
-
 let ticking = false;
+let lastScroll = 0;
+
 window.addEventListener('scroll', () => {
     if (!ticking) {
         window.requestAnimationFrame(() => {
@@ -54,7 +58,6 @@ window.addEventListener('scroll', () => {
         });
         ticking = true;
     }
-    
 
     const currentScroll = window.pageYOffset;
     const header = document.getElementById('main-header');
@@ -69,7 +72,6 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -82,5 +84,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-let lastScroll = 0;
