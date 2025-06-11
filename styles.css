@@ -551,6 +551,14 @@ header.hidden {
     transition: opacity var(--anim-speed) ease var(--anim-delay), transform var(--anim-speed) ease var(--anim-delay);
 }
 
+.cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
 .cta-phone {
     display: inline-flex;
     align-items: center;
@@ -578,6 +586,38 @@ header.hidden {
     transform: translateY(0);
 }
 
+.cta-messenger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--white);
+    color: var(--primary);
+    padding: 12px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--anim-speed) ease var(--anim-delay), transform var(--anim-speed) ease var(--anim-delay);
+}
+
+.cta-messenger:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cta-messenger svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+}
+
+.cta-messenger:hover svg {
+    transform: scale(1.1);
+}
+
 .cta-image {
     width: 300px;
     height: auto;
@@ -598,25 +638,66 @@ header.hidden {
     margin: 0 auto;
 }
 
-.cities-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    margin-top: 40px;
-    border: 2px solid var(--primary);
-    border-radius: 12px;
-    padding: 25px;
-    background-color: var(--white);
+.cities-container p {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-size: 18px;
+    color: var(--gray);
     opacity: 0;
-    transform: scale(0.95);
+    transform: translateY(20px);
     transition: opacity var(--anim-speed) ease, transform var(--anim-speed) ease;
 }
 
-.city {
-    padding: 10px;
-    text-align: center;
-    font-weight: 600;
+.cities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.city-region {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.city-region:hover {
+    transform: translateY(-5px);
+}
+
+.city-region h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 18px;
     position: relative;
+    padding-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.city-region h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-light);
+}
+
+.city-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.city {
+    padding: 8px 0;
+    font-weight: 500;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity var(--anim-speed) ease, transform var(--anim-speed) ease;
@@ -628,21 +709,6 @@ header.hidden {
 .city:nth-child(4) { transition-delay: calc(var(--anim-delay) * 4); }
 .city:nth-child(5) { transition-delay: calc(var(--anim-delay) * 5); }
 .city:nth-child(6) { transition-delay: calc(var(--anim-delay) * 6); }
-.city:nth-child(7) { transition-delay: calc(var(--anim-delay) * 7); }
-.city:nth-child(8) { transition-delay: calc(var(--anim-delay) * 8); }
-.city:nth-child(9) { transition-delay: calc(var(--anim-delay) * 9); }
-.city:nth-child(10) { transition-delay: calc(var(--anim-delay) * 10); }
-
-.city:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: -8px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1px;
-    height: 60%;
-    background-color: rgba(0, 0, 0, 0.1);
-}
 
 footer {
     background-color: var(--dark);
@@ -852,12 +918,8 @@ footer {
         font-size: 30px;
     }
     
-    .cities-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    
-    .city:not(:last-child)::after {
-        display: none;
+    .city-list {
+        grid-template-columns: 1fr;
     }
     
     .step {
@@ -877,7 +939,16 @@ footer {
     .steps-line {
         display: none;
     }
-
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-messenger {
+        width: 100%;
+        justify-content: center;
+    }
     
     .brands-label {
         font-size: 22px;
